@@ -1,6 +1,4 @@
 from pathlib import Path
-import os
-import django_heroku
 import environ
 
 env = environ.Env(
@@ -11,7 +9,7 @@ READ_DOT_ENV_FILE = env.bool('READ_DOT_ENV_FILE', default=False)
 if READ_DOT_ENV_FILE:
     environ.Env.read_env()
 
-DEBUG = False
+DEBUG = env('DEBUG')
 SECRET_KEY = env('SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -180,6 +178,3 @@ LOGGING = {
 }
 
 TAILWIND_APP_NAME = 'theme'
-
-# Activate Django-Heroku.
-django_heroku.settings(locals())
